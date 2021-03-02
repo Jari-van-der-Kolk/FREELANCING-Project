@@ -6,7 +6,7 @@ public class Shoot : MonoBehaviour
 {
 
     private Timer timer = new Timer();
-    [SerializeField] private int damage;
+    [SerializeField] private FloatReference damage;
     [SerializeField] private float shootingSpeed;
 
     private IRayProvider rayProvider;
@@ -29,7 +29,7 @@ public class Shoot : MonoBehaviour
         {
             selector.Check(rayProvider.CreateRay());
             if(selector.GetSelection() != null)
-            selector.GetSelection().GetComponent<Idamageable>().GetDamaged(damage);
+            selector.GetSelection().GetComponent<Idamageable>().GetDamaged(damage.Value);
             
             Debug.Log(name + "has shot");
             timer.ResetTime(0);

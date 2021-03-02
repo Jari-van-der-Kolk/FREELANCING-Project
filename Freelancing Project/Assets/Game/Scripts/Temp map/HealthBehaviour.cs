@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthBehaviour : MonoBehaviour, Idamageable
 {
    
-    public void GetDamaged(int damage)
+    public void GetDamaged(float damage)
     {
         Destroy(gameObject);
     }
