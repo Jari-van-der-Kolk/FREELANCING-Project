@@ -7,7 +7,9 @@ public class Shoot : MonoBehaviour
 
     private Timer timer = new Timer();
     [SerializeField] private FloatReference damage;
-    [SerializeField] private float shootingSpeed;
+    [SerializeField] private FloatReference magezine;
+    [SerializeField] private FloatReference currentAmmo;
+    [SerializeField] private FloatReference shootingSpeed;
 
     private IRayProvider rayProvider;
     private ISelector selector;
@@ -23,7 +25,7 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         timer.GetDeltaTime(Time.deltaTime);
-        timer.TimeMultiplication(shootingSpeed);
+        timer.TimeMultiplication(shootingSpeed.Value);
 
         if (Input.GetMouseButton(0) && timer.time > 1f)
         {
