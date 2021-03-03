@@ -5,11 +5,12 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
 
-    private Timer timer = new Timer();
     [SerializeField] private FloatReference damage;
-    [SerializeField] private FloatReference magezine;
+    [SerializeField] private FloatReference magezineSize;
     [SerializeField] private FloatReference currentAmmo;
     [SerializeField] private FloatReference shootingSpeed;
+    private Timer timer = new Timer();
+    private Ammo ammo;
 
     private IRayProvider rayProvider;
     private ISelector selector;
@@ -18,6 +19,7 @@ public class Shoot : MonoBehaviour
 
     void Start()
     {
+        ammo = new Ammo(magezineSize.Value, currentAmmo.Value);
         rayProvider = GetComponent<IRayProvider>(); //dit called het midden van het scherm
         selector = GetComponent<ISelector>(); // maakt de ray die ervoor zorgt dat je de enemy raakt
     }
@@ -27,9 +29,10 @@ public class Shoot : MonoBehaviour
         timer.GetDeltaTime(Time.deltaTime);
         timer.TimeMultiplication(shootingSpeed.Value);
 
-        if (Input.GetMouseButton(0) && timer.time > 1f)
+        if (Input.GetMouseButton(0) && timer.time > 1f && ammo.HasAmmoInMag())
         {
             selector.Check(rayProvider.CreateRay());
+
             if(selector.GetSelection() != null)
             selector.GetSelection().GetComponent<Idamageable>().GetDamaged(damage.Value);
             
