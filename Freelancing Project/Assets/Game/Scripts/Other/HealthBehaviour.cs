@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBehaviour : MonoBehaviour, Idamageable
+public class HealthBehaviour : MonoBehaviour, Idamageable, IHealable
 {
     [SerializeField] private FloatReference startingHealth;
 
@@ -19,5 +19,11 @@ public class HealthBehaviour : MonoBehaviour, Idamageable
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, startingHealth.Value);
     }
 }
