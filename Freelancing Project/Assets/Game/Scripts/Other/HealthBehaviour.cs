@@ -29,6 +29,7 @@ public class HealthBehaviour : MonoBehaviour, Idamageable, IHealable
     public void Heal(float amount)
     {
         currentHealth += amount;
+        Debug.Log(currentHealth);
         currentHealth = Mathf.Clamp(currentHealth, 0, startingHealth.Value);
     }
 }
