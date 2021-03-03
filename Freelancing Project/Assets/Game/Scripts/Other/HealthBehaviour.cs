@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HealthBehaviour : MonoBehaviour, Idamageable, IHealable
 {
     [SerializeField] private FloatReference startingHealth;
+    public TextMeshProUGUI UIHealth;
 
     public float currentHealth { get; private set; }
 
@@ -18,6 +20,10 @@ public class HealthBehaviour : MonoBehaviour, Idamageable, IHealable
         {
             gameObject.SetActive(false);
         }
+    }
+    void Update()
+    {
+        UIHealth.text = currentHealth.ToString();
     }
 
     public void Heal(float amount)
