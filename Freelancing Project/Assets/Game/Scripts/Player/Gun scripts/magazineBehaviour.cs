@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class magazineBehaviour
 {
+    private struct UpdateUI
+    {
+        public float foo;
+        public float panda;
+    }
+
+    private UpdateUI updateUI;
     public float maxMagSize;
     public float currentAmmoInMag;
     public float currentAmountOfBullets;
-    private float extract;
+   
     
-    public magazineBehaviour(float _maxAmmo, float _currentAmmoInMag,float _amountOfBullets)
+    public magazineBehaviour(float _magSize, float _currentAmmoInMag,float _amountOfBullets)
     {
-        maxMagSize = _maxAmmo;
+        maxMagSize = _magSize;
         currentAmmoInMag = _currentAmmoInMag;
         currentAmountOfBullets = _amountOfBullets;
+        updateUI.foo = _magSize;
     }
 
     public bool HasAmmoInMag()
@@ -22,6 +30,7 @@ public class magazineBehaviour
     }
     public void Shot()
     {
+        Debug.Log(currentAmmoInMag);
         currentAmmoInMag -= 1;
         currentAmountOfBullets -= 1;
         currentAmmoInMag = Mathf.Clamp(currentAmmoInMag, 0, maxMagSize);
@@ -29,8 +38,18 @@ public class magazineBehaviour
     
     public void Reload()
     {
-        
+        if (currentAmountOfBullets >= maxMagSize)
+        {
+            currentAmmoInMag = maxMagSize;
+            currentAmountOfBullets -= maxMagSize;
+
+        }
+        if (currentAmountOfBullets < maxMagSize)
+        {
+            currentAmmoInMag = currentAmountOfBullets;
+        }
     }
+
 
 
 }

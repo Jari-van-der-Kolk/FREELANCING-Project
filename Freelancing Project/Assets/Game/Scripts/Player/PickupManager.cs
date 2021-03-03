@@ -8,13 +8,14 @@ public class PickupManager : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Pickupable>() != null)
         {
+            Debug.Log("working");
             switch (collision.gameObject.GetComponent<Pickupable>().item)
             {
                 case (Pickupable.itemSort.Ammo):
                     Debug.Log("Picked up Ammo");
                     break;
                 case (Pickupable.itemSort.Health):
-                    Debug.Log("Picked up Health");
+                GetComponent<IHealable>().Heal(100);
                     break;
             }
             Destroy(collision.gameObject);
