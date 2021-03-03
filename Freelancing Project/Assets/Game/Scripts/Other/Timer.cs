@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer
 {
-    public float Multiplecation = 0;
+    public float Multiplecation = 1;
     public float time = 0;
 
     public void GetDeltaTime(float deltatime) => time += deltatime * Multiplecation;

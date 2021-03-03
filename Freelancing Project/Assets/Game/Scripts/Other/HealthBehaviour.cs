@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class HealthBehaviour : MonoBehaviour, Idamageable
 {
-   
+    [SerializeField] private FloatReference startingHealth;
+
+    public float currentHealth { get; private set; }
+
+    private void Start()
+    {
+        currentHealth = startingHealth.Value;   
+    }
+
     public void GetDamaged(float damage)
     {
-        Destroy(gameObject);
+        if (currentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
