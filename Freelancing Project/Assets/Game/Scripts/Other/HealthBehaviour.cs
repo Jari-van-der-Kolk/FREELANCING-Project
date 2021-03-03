@@ -7,16 +7,13 @@ public class HealthBehaviour : MonoBehaviour, Idamageable, IHealable
     [SerializeField] private FloatReference startingHealth;
 
     public float currentHealth { get; private set; }
-    public UiHealthbar healthbar;
 
     private void Start()
     {
         currentHealth = startingHealth.Value;
-        healthbar.SetMaxHealth(currentHealth);
     }    
     public void GetDamaged(float damage)
     {
-        healthbar.SetHealth(currentHealth);
         if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
