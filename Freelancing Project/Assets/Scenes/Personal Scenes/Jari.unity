@@ -166,10 +166,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 10
     Variable: {fileID: 0}
-  currentAmmoInMag:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
+  ammoInMag:
+    UseConstant: 0
+    ConstantValue: 10
+    Variable: {fileID: 11400000, guid: 461545f9299e047439e6cfc7a9ecd815, type: 2}
   amountOfBullets:
     UseConstant: 1
     ConstantValue: 100
@@ -259,6 +259,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 50
     Variable: {fileID: 0}
+  UIHealth: {fileID: 0}
 --- !u!54 &35329496
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1027,3 +1028,4 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  UIHealth: {fileID: 0}

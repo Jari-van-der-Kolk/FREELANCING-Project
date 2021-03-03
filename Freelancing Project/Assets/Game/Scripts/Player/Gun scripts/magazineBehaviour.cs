@@ -6,47 +6,43 @@ public class magazineBehaviour
 {
     private struct UpdateUI
     {
-        public float foo;
-        public float panda;
+        public float maxMagSize;
+        public float currentAmmoInMag;
+        public float currentAmountOfBullets;
     }
 
     private UpdateUI updateUI;
-    public float maxMagSize;
-    public float currentAmmoInMag;
-    public float currentAmountOfBullets;
-   
     
     public magazineBehaviour(float _magSize, float _currentAmmoInMag,float _amountOfBullets)
     {
-        maxMagSize = _magSize;
-        currentAmmoInMag = _currentAmmoInMag;
-        currentAmountOfBullets = _amountOfBullets;
-        updateUI.foo = _magSize;
+        updateUI.maxMagSize = _magSize;
+        updateUI.currentAmmoInMag = _currentAmmoInMag;
+        updateUI.currentAmountOfBullets = _amountOfBullets;
     }
 
     public bool HasAmmoInMag()
     {
-        return currentAmmoInMag > 0;
+        return updateUI.currentAmmoInMag > 0;
     }
     public void Shot()
     {
-        Debug.Log(currentAmmoInMag);
-        currentAmmoInMag -= 1;
-        currentAmountOfBullets -= 1;
-        currentAmmoInMag = Mathf.Clamp(currentAmmoInMag, 0, maxMagSize);
+        Debug.Log(updateUI.currentAmmoInMag);
+        updateUI.currentAmmoInMag -= 1;
+        updateUI.currentAmountOfBullets -= 1;
+        updateUI.currentAmmoInMag = Mathf.Clamp(updateUI.currentAmmoInMag, 0, updateUI.maxMagSize);
     }
     
     public void Reload()
     {
-        if (currentAmountOfBullets >= maxMagSize)
+        if (updateUI.currentAmountOfBullets >= updateUI.maxMagSize)
         {
-            currentAmmoInMag = maxMagSize;
-            currentAmountOfBullets -= maxMagSize;
+            updateUI.currentAmmoInMag = updateUI.maxMagSize;
+            updateUI.currentAmountOfBullets -= updateUI.maxMagSize;
 
         }
-        if (currentAmountOfBullets < maxMagSize)
+        if (updateUI.currentAmountOfBullets < updateUI.maxMagSize)
         {
-            currentAmmoInMag = currentAmountOfBullets;
+            updateUI.currentAmmoInMag = updateUI.currentAmountOfBullets;
         }
     }
 
